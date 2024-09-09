@@ -1,0 +1,34 @@
+FROM ubuntu:jammy
+
+ARG EO_HOME_DIR=/eo-tools-eodag
+ARG DEBIAN_FRONTEND=noninteractive
+
+#Set environment variables
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+
+#Update apt
+RUN apt-get update
+
+#Install basic Ubuntu packages
+RUN apt-get update && \
+    apt-get install -y \
+    software-properties-common \
+    wget \
+    python3-pip
+
+#Install user packages
+RUN apt-get install -y \
+    vim \
+    nano \
+    tmux \
+    htop
+
+# Install dependencies
+RUN pip install eodag && pip install python-dotenv
+
+
+WORKDIR ${EO_HOME_DIR}
+
+
+
