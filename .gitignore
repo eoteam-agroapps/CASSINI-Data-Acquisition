@@ -1,0 +1,11 @@
+DownloadScripts/
+Various/
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+AppEEARS_API/.env
+EODAG_API/.env
+EODAG_API/PRODUCTS/
