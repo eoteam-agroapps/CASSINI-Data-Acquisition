@@ -31,8 +31,6 @@ os.environ["EODAG__COP_DATASPACE__AUTH__CREDENTIALS__USERNAME"] = os.getenv("EOD
 os.environ["EODAG__COP_DATASPACE__AUTH__CREDENTIALS__PASSWORD"] = os.getenv("EODAG__COP_DATASPACE__AUTH__CREDENTIALS__PASSWORD")
 os.environ["EODAG__ONDA__AUTH__CREDENTIALS__USERNAME"] = os.getenv("EODAG__ONDA__AUTH__CREDENTIALS__USERNAME")
 os.environ["EODAG__ONDA__AUTH__CREDENTIALS__PASSWORD"] = os.getenv("EODAG__ONDA__AUTH__CREDENTIALS__PASSWORD")
-os.environ["EODAG__USGS__EARTH__EXPLORER__AUTH__CREDENTIALS__USERNAME"] = os.getenv("EODAG__USGS__EARTH__EXPLORER__AUTH__CREDENTIALS__USERNAME")
-os.environ["EODAG__USGS__EARTH__EXPLORER__AUTH__CREDENTIALS__PASSWORD"] = os.getenv("EODAG__USGS__EARTH__EXPLORER__AUTH__CREDENTIALS__PASSWORD")
 
 setup_logging(2)
 
@@ -46,31 +44,25 @@ os.environ["EODAG__CREODIAS__DOWNLOAD__OUTPUTS_PREFIX"] = os.path.abspath(worksp
 os.environ["EODAG__COP_DATASPACE__DOWNLOAD__OUTPUTS_PREFIX"] = os.path.abspath(workspace)
 os.environ["EODAG__ONDA__DOWNLOAD__OUTPUTS_PREFIX"] = os.path.abspath(workspace)
 
-os.environ["EODAG__USGS__EARTH__EXPLORER__DOWNLOAD__OUTPUTS_PREFIX"] = os.path.abspath(workspace)
-
 # Save the CREODIAS configuration file in workspace.
 yaml_content = """
 creodias:
-    priority: 4
-    download:
-        outputs_prefix: "{}"
-        extract: true
-cop_dataspace:
     priority: 3
     download:
         outputs_prefix: "{}"
         extract: true
-onda:
+cop_dataspace:
     priority: 2
     download:
         outputs_prefix: "{}"
         extract: true
-usgs:
+onda:
     priority: 1
     download:
         outputs_prefix: "{}"
         extract: true
-""".format(*(os.path.join(workspace, "{}"),) * 4)
+
+""".format(*(os.path.join(workspace, "{}"),) * 3)
 
 with open(os.path.join(workspace, 'eodag_conf.yml'), "w") as f_yml:
     f_yml.write(yaml_content.strip())
